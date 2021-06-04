@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WatchMovie.Models.MovieModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-3">Lista filmów do obejrzenia</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Dodaj film do swojej listy</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>        
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>       
+            <td style=" width:65%">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style=" width:35%">
+                @Html.ActionLink("Obejrzane", "Done", new { id = item.MovieId }, new {@class="btn btn-success"})
+                @Html.ActionLink("Edycja", "Edit", new { id = item.MovieId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Szczegóły", "Details", new { id = item.MovieId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Usuń", "Delete", new { id = item.MovieId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
